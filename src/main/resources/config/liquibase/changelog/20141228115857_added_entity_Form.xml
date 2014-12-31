@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+    <property name="now" value="now()" dbms="mysql,h2"/>
+    <property name="now" value="current_timestamp" dbms="postgresql"/>
+
+    <!--
+        Added the entity Form.
+    -->
+    <changeSet id="20141228115857" author="jhipster">
+        <createTable tableName="T_FORM">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="name" type="varchar(255)"/>
+            <column name="incon" type="varchar(255)"/>
+            <column name="physical_change" type="varchar(255)"/>
+            <column name="sort_order" type="integer"/>
+        </createTable>
+        
+        <createTable tableName="T_FORM_T_ADVANTAGE">
+            <column name="advantages_id" type="bigint">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="forms_id" type="bigint">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+        </createTable>
+        <addForeignKeyConstraint baseColumnNames="advantages_id"
+                                 baseTableName="T_FORM_T_ADVANTAGE"
+                                 constraintName="fk_form_advantage_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="T_ADVANTAGE"/>
+        <addForeignKeyConstraint baseColumnNames="forms_id"
+                                 baseTableName="T_FORM_T_ADVANTAGE"
+                                 constraintName="fk_advantage_form_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="T_FORM"/>
+        
+    </changeSet>
+</databaseChangeLog>

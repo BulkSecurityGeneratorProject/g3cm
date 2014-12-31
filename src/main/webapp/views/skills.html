@@ -1,0 +1,99 @@
+<div>
+
+    <h2>Skills</h2>
+
+    <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#saveSkillModal" ng-click="clear()">
+        <span class="glyphicon glyphicon-flash"></span> Create a new Skill
+    </button>
+    <div class="modal fade" id="saveSkillModal" tabindex="-1" role="dialog" aria-labelledby="mySkillLabel"
+         aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form name="form" role="form" novalidate
+                      class="ng-scope ng-invalid ng-invalid-required ng-dirty ng-valid-minlength"
+                      ng-submit="create()">
+
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                                ng-click="clear()">&times;</button>
+                        <h4 class="modal-title" id="mySkillLabel">Create or edit a Skill</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label>ID</label>
+                            <input type="text" class="form-control" name="id"
+                                   ng-model="skill.id" readonly>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Name</label>
+                            <input type="text" class="form-control"
+                                   ng-model="skill.name">
+                        </div>
+                        <div class="form-group">
+                            <label>Description</label>
+                            <input type="text" class="form-control"
+                                   ng-model="skill.description">
+                        </div>
+                        <div class="form-group">
+                            <label>Difficulty</label>
+                            <input type="number" class="form-control"
+                                   ng-model="skill.difficulty">
+                        </div>
+
+                        <div class="form-group">
+                            <label>attributeType</label>
+                            <select class="form-control" ng-model="skill.attributeType.id" ng-options="attributeType.id as attributeType.name for attributeType in attributeTypes">
+                            </select>
+                        </div>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="clear()">
+                            <span class="glyphicon glyphicon-ban-circle"></span> Cancel
+                        </button>
+                        <button type="submit" ng-disabled="form.$invalid" class="btn btn-primary">
+                            <span class="glyphicon glyphicon-save"></span> Save
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th>Difficulty</th>
+                    <th>attributeType</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="skill in skills">
+                    <td>{{skill.id}}</td>
+                    <td>{{skill.name}}</td>
+                    <td>{{skill.description}}</td>
+                    <td>{{skill.difficulty}}</td>
+                    <td>{{skill.attributeType.name}}</td>
+                    <td>
+                        <button type="submit"
+                                ng-click="update(skill.id)"
+                                class="btn btn-default">
+                            <span class="glyphicon glyphicon-pencil"></span> Edit
+                        </button>
+                        <button type="submit"
+                                ng-click="delete(skill.id)"
+                                class="btn btn-danger">
+                            <span class="glyphicon glyphicon-remove-circle"></span> Delete
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
