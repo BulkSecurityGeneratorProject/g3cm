@@ -8,10 +8,10 @@
     <include file="classpath:config/liquibase/changelog/20141228115031_added_entity_Campaign.xml" relativeToChangelogFile="false"/>
     <include file="classpath:config/liquibase/changelog/20141228115105_added_entity_AttributeType.xml" relativeToChangelogFile="false"/>
     <include file="classpath:config/liquibase/changelog/20141228115208_added_entity_Advantage.xml" relativeToChangelogFile="false"/>
-    <include file="classpath:config/liquibase/changelog/20141228115857_added_entity_Form.xml" relativeToChangelogFile="false"/>
+<!--     <include file="classpath:config/liquibase/changelog/20141228115857_added_entity_Form.xml" relativeToChangelogFile="false"/> -->
     <include file="classpath:config/liquibase/changelog/20141228121558_added_entity_Skill.xml" relativeToChangelogFile="false"/>
-    <include file="classpath:config/liquibase/changelog/20141228121739_added_entity_FormSkillMod.xml" relativeToChangelogFile="false"/>
-    <include file="classpath:config/liquibase/changelog/20141228121953_added_entity_FormAttributeMod.xml" relativeToChangelogFile="false"/>
+<!--     <include file="classpath:config/liquibase/changelog/20141228121739_added_entity_FormSkillMod.xml" relativeToChangelogFile="false"/> -->
+<!--     <include file="classpath:config/liquibase/changelog/20141228121953_added_entity_FormAttributeMod.xml" relativeToChangelogFile="false"/> -->
     <include file="classpath:config/liquibase/changelog/20141228122603_added_entity_Character.xml" relativeToChangelogFile="false"/>
     <include file="classpath:config/liquibase/changelog/20141228122814_added_entity_CharacterSkill.xml" relativeToChangelogFile="false"/>
     <include file="classpath:config/liquibase/changelog/20141228123109_added_entity_CharacterAttribute.xml" relativeToChangelogFile="false"/>

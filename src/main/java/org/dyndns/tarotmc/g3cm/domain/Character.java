@@ -38,10 +38,6 @@ public class Character implements Serializable {
     @ManyToOne
     private Campaign campaign;
 
-    @ManyToMany
-    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-    private Set<Form> forms = new HashSet<>();
-
     @ManyToOne
     private User user;
 
@@ -106,14 +102,6 @@ public class Character implements Serializable {
 
     public void setCampaign(Campaign campaign) {
         this.campaign = campaign;
-    }
-
-    public Set<Form> getForms() {
-        return forms;
-    }
-
-    public void setForms(Set<Form> forms) {
-        this.forms = forms;
     }
 
     public User getUser() {
