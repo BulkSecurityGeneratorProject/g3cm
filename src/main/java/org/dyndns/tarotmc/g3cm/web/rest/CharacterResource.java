@@ -1,8 +1,11 @@
 package org.dyndns.tarotmc.g3cm.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
+
 import org.dyndns.tarotmc.g3cm.domain.Character;
+import org.dyndns.tarotmc.g3cm.domain.User;
 import org.dyndns.tarotmc.g3cm.repository.CharacterRepository;
+import org.dyndns.tarotmc.g3cm.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
@@ -12,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletResponse;
+
 import java.util.List;
 
 /**
@@ -25,6 +29,8 @@ public class CharacterResource {
 
     @Inject
     private CharacterRepository characterRepository;
+    @Inject 
+    UserService userService;
 
     /**
      * POST  /rest/characters -> Create a new character.
@@ -35,6 +41,8 @@ public class CharacterResource {
     @Timed
     public void create(@RequestBody Character character) {
         log.debug("REST request to save Character : {}", character);
+        User user = userService.getUserWithAuthorities();
+        character.setUser(user);
         characterRepository.save(character);
     }
 
@@ -47,7 +55,8 @@ public class CharacterResource {
     @Timed
     public List<Character> getAll() {
         log.debug("REST request to get all Characters");
-        return characterRepository.findAll();
+        User user = userService.getUserWithAuthorities();
+        return characterRepository.findAllByLogin(user);
     }
 
     /**
