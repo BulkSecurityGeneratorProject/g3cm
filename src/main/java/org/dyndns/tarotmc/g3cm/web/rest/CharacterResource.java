@@ -56,7 +56,7 @@ public class CharacterResource {
     public List<Character> getAll() {
         log.debug("REST request to get all Characters");
         User user = userService.getUserWithAuthorities();
-        return characterRepository.findAllByLogin(user);
+        return characterRepository.findAllByUserLogin(user.getLogin());
     }
 
     /**

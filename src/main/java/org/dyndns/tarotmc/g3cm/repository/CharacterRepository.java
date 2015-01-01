@@ -10,5 +10,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
  * Spring Data JPA repository for the Character entity.
  */
 public interface CharacterRepository extends JpaRepository<Character, Long> {
-	public List<Character>findAllByUser(User user);
+	public List<Character>findAllByUserLogin(String login);
 }
