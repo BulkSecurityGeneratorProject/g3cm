@@ -27,19 +27,23 @@
 			baseTableName="T_CHARACTER" constraintName="fk_character_user_login"
 			referencedColumnNames="login" referencedTableName="T_USER" />
 
-		<createTable tableName="T_CHARACTER_T_FORM">
-			<column name="character_id" type="bigint">
-				<constraints primaryKey="true" nullable="false" />
-			</column>
-			<column name="forms_id" type="bigint">
-				<constraints primaryKey="true" nullable="false" />
-			</column>
-		</createTable>
-		<addForeignKeyConstraint baseColumnNames="character_id"
-			baseTableName="T_CHARACTER_T_FORM" constraintName="fk_form_character_id"
-			referencedColumnNames="id" referencedTableName="T_CHARACTER" />
-		<addForeignKeyConstraint baseColumnNames="forms_id"
-			baseTableName="T_CHARACTER_T_FORM" constraintName="fk_character_form_id"
-			referencedColumnNames="id" referencedTableName="T_FORM" />
+		 <createTable tableName="T_CHARACTER_T_FORM">
+            <column name="forms_id" type="bigint">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="t_character_id" type="bigint">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+        </createTable>
+        <addForeignKeyConstraint baseColumnNames="forms_id"
+                                 baseTableName="T_CHARACTER_T_FORM"
+                                 constraintName="fk_character_form_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="T_FORM"/>
+        <addForeignKeyConstraint baseColumnNames="t_character_id"
+                                 baseTableName="T_CHARACTER_T_FORM"
+                                 constraintName="fk_form_character_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="T_CHARACTER"/>
 	</changeSet>
 </databaseChangeLog>
