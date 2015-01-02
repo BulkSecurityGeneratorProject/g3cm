@@ -1,12 +1,10 @@
 package org.dyndns.tarotmc.g3cm.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 import javax.persistence.*;
-
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
@@ -27,7 +25,7 @@ public class Character implements Serializable {
     private String name;
 
     @Column(name = "age")
-    private Integer age;
+    private String age;
 
     @Column(name = "description")
     private String description;
@@ -38,27 +36,22 @@ public class Character implements Serializable {
     @ManyToOne
     private Campaign campaign;
 
-    @ManyToMany
+    @OneToMany(mappedBy = "character")
+    @JsonIgnore
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-    private Set<Form> forms = new HashSet<>();
-
-    @ManyToOne
-    private User user;
+    private Set<CharacterAdvantage> characterAdvantages = new HashSet<>();
 
     @OneToMany(mappedBy = "character")
     @JsonIgnore
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<CharacterSkill> characterSkills = new HashSet<>();
 
-    @OneToMany(mappedBy = "character")
-    @JsonIgnore
+    @ManyToMany
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-    private Set<CharacterAttribute> characterAttributes = new HashSet<>();
-
-    @OneToMany(mappedBy = "character")
-    @JsonIgnore
-    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-    private Set<CharacterAdvantage> characterAdvantages = new HashSet<>();
+    private Set<Form> forms = new HashSet<>();
+    
+    @ManyToOne
+    private User user;
 
     public Long getId() {
         return id;
@@ -76,11 +69,11 @@ public class Character implements Serializable {
         this.name = name;
     }
 
-    public Integer getAge() {
+    public String getAge() {
         return age;
     }
 
-    public void setAge(Integer age) {
+    public void setAge(String age) {
         this.age = age;
     }
 
@@ -108,20 +101,12 @@ public class Character implements Serializable {
         this.campaign = campaign;
     }
 
-    public Set<Form> getForms() {
-        return forms;
+    public Set<CharacterAdvantage> getCharacterAdvantages() {
+        return characterAdvantages;
     }
 
-    public void setForms(Set<Form> forms) {
-        this.forms = forms;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
+    public void setCharacterAdvantages(Set<CharacterAdvantage> characterAdvantages) {
+        this.characterAdvantages = characterAdvantages;
     }
 
     public Set<CharacterSkill> getCharacterSkills() {
@@ -132,23 +117,23 @@ public class Character implements Serializable {
         this.characterSkills = characterSkills;
     }
 
-    public Set<CharacterAttribute> getCharacterAttributes() {
-        return characterAttributes;
+    public Set<Form> getForms() {
+        return forms;
     }
 
-    public void setCharacterAttributes(Set<CharacterAttribute> characterAttributes) {
-        this.characterAttributes = characterAttributes;
+    public void setForms(Set<Form> forms) {
+        this.forms = forms;
     }
+    
+    public User getUser() {
+		return user;
+	}
 
-    public Set<CharacterAdvantage> getCharacterAdvantages() {
-        return characterAdvantages;
-    }
+	public void setUser(User user) {
+		this.user = user;
+	}
 
-    public void setCharacterAdvantages(Set<CharacterAdvantage> characterAdvantages) {
-        this.characterAdvantages = characterAdvantages;
-    }
-
-    @Override
+	@Override
     public boolean equals(Object o) {
         if (this == o) {
             return true;

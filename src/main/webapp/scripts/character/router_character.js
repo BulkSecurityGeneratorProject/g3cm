@@ -13,20 +13,14 @@ g3charactermanagerApp
                         resolvedCampaign: ['Campaign', function (Campaign) {
                             return Campaign.query().$promise;
                         }],
-                        resolvedForm: ['Form', function (Form) {
-                            return Form.query().$promise;
-                        }],
-                        resolvedUser: ['User', function (User) {
-                            return User.query().$promise;
+                        resolvedCharacterAdvantage: ['CharacterAdvantage', function (CharacterAdvantage) {
+                            return CharacterAdvantage.query().$promise;
                         }],
                         resolvedCharacterSkill: ['CharacterSkill', function (CharacterSkill) {
                             return CharacterSkill.query().$promise;
                         }],
-                        resolvedCharacterAttribute: ['CharacterAttribute', function (CharacterAttribute) {
-                            return CharacterAttribute.query().$promise;
-                        }],
-                        resolvedCharacterAdvantages: ['CharacterAdvantages', function (CharacterAdvantages) {
-                            return CharacterAdvantages.query().$promise;
+                        resolvedForm: ['Form', function (Form) {
+                            return Form.query().$promise;
                         }]
                     },
                     access: {
