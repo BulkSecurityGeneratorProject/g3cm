@@ -1,12 +1,14 @@
 'use strict';
 
-g3charactermanagerApp.controller('CharacterController', function ($scope, resolvedCharacter, Character, resolvedCampaign, resolvedCharacterAdvantage, resolvedCharacterSkill, resolvedForm) {
+g3charactermanagerApp.controller('CharacterDetailController', function ($scope, $routeParams,$location, $log,resolvedCharacter, Character, resolvedCampaign, resolvedCharacterAdvantage, resolvedCharacterSkill, resolvedForm) {
 
         $scope.characters = resolvedCharacter;
         $scope.campaigns = resolvedCampaign;
         $scope.characterAdvantages = resolvedCharacterAdvantage;
         $scope.characterSkills = resolvedCharacterSkill;
         $scope.forms = resolvedForm;
+        
+        $scope.selectedCharacter=Character.get({id:$routeParams.characterId});
 
         $scope.create = function () {
             Character.save($scope.character,
@@ -21,6 +23,7 @@ g3charactermanagerApp.controller('CharacterController', function ($scope, resolv
             $scope.character = Character.get({id: id});
             $('#saveCharacterModal').modal('show');
         };
+        
 
         $scope.deleteCharacter = function (id) {
             Character.delete({id: id},
@@ -33,3 +36,15 @@ g3charactermanagerApp.controller('CharacterController', function ($scope, resolv
             $scope.character = {name: null, age: null, description: null, bio: null, id: null};
         };
     });
+
+g3charactermanagerApp.controller("TabController", function() {
+    this.tab = 1;
+
+    this.isSet = function(checkTab) {
+      return this.tab === checkTab;
+    };
+
+    this.setTab = function(setTab) {
+      this.tab = setTab;
+    };
+  });

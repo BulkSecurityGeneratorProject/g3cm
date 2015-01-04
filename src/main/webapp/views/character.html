@@ -6,6 +6,14 @@
 		data-target="#saveCharacterModal" ng-click="clear()">
 		<span class="glyphicon glyphicon-flash"></span> Create a new Character
 	</button>
+	<button type="submit" ng-click="update(selectedCharacter.id)"
+				class="btn btn-default">
+				<span class="glyphicon glyphicon-pencil"></span> Edit Basic Info
+			</button>
+			<button type="submit" ng-click="delete(selectedCharacter.id)"
+				class="btn btn-danger">
+				<span class="glyphicon glyphicon-remove-circle"></span> Delete
+			</button>
 	<div class="modal fade" id="saveCharacterModal" tabindex="-1"
 		role="dialog" aria-labelledby="myCharacterLabel" aria-hidden="true">
 		<div class="modal-dialog">
@@ -71,22 +79,15 @@
 			</div>
 		</div>
 	</div>
-
+<br/><br/>
 	<div class="table-responsive">
 		<div class="form-group">Name:{{selectedCharacter.name}}</div>
 		<div class="form-group">Age:{{selectedCharacter.age}}</div>
 		<div class="form-group">
 			Description:{{selectedCharacter.description}}</div>
 		<div class="form-group">Biography:{{selectedCharacter.bio}}</div>
-		<div>
-			<button type="submit" ng-click="update(character.id)"
-				class="btn btn-default">
-				<span class="glyphicon glyphicon-pencil"></span> Edit
-			</button>
-			<button type="submit" ng-click="delete(character.id)"
-				class="btn btn-danger">
-				<span class="glyphicon glyphicon-remove-circle"></span> Delete
-			</button>
+		<div class="tabbed-control">
+			<character-advantages></character-advantages>
 		</div>
 	</div>
 </div>
