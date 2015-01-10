@@ -1,0 +1,110 @@
+<div>
+
+    <h2>Advantages / Disadvantages</h2>
+
+    <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#saveCharacterAdvantageModal" ng-click="clearAdvantage()">
+        <span class="glyphicon glyphicon-flash"></span> Add an advantage or disadvantage
+    </button>
+    <div class="modal fade" id="saveCharacterAdvantageModal" tabindex="-1" role="dialog" aria-labelledby="myCharacterAdvantageLabel"
+         aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form name="form" role="form" novalidate
+                      class="ng-scope ng-invalid ng-invalid-required ng-dirty ng-valid-minlength"
+                      ng-submit="createAdvantage()">
+
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                                ng-click="clearAdvantage()">&times;</button>
+                        <h4 class="modal-title" id="myCharacterAdvantageLabel">Create or edit a CharacterAdvantage</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group" ng-hide="true">
+                            <label>ID</label>
+                            <input type="text" class="form-control" name="id"
+                                   ng-model="characterAdvantage.id" readonly>
+                        </div>
+
+                        <div class="form-group">
+                            <label>advantage</label>
+                            <select class="form-control" id="advantageSelector" ng-model="characterAdvantage.advantage.id" ng-options="advantage.id as advantage.name for advantage in advantages"
+                            ng-change="updateAdvPoints();">
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Points</label>
+                            <input type="number" class="form-control"
+                                   ng-model="characterAdvantage.points">
+                        </div>
+
+                        <div class="form-group" ng-hide="true">
+                            <label>character</label>
+                            <select class="form-control" ng-model="characterAdvantage.character.id" ng-options="character.id as character.name for character in characters">
+                            </select>
+                        </div>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="clearAdvantage()">
+                            <span class="glyphicon glyphicon-ban-circle"></span> Cancel
+                        </button>
+                        <button type="submit" ng-disabled="form.$invalid" class="btn btn-primary">
+                            <span class="glyphicon glyphicon-save"></span> Save
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Points</th>
+                    <th>advantage</th>
+                    <th>character</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="characterAdvantage in characterAdvantages | forSelectedCharacter">
+                    <td>{{characterAdvantage.points}}</td>
+                    <td>{{characterAdvantage.advantage.name}}</td>
+                    <td>
+                    	<button type="submit"
+                                ng-click="showAdvDescription(characterAdvantage.advantage.description,characterAdvantage.advantage.name)"
+                                class="btn btn-default">
+                            <span class="glyphicon glyphicon-pencil"></span> Description
+                        </button>
+                    </td>
+                    <td>
+                        <button type="submit"
+                                ng-click="updateAdvantage(characterAdvantage.id)"
+                                class="btn btn-default">
+                            <span class="glyphicon glyphicon-pencil"></span> Edit
+                        </button>
+                        <button type="submit"
+                                ng-click="deleteAdvantage(characterAdvantage.id)"
+                                class="btn btn-danger">
+                            <span class="glyphicon glyphicon-remove-circle"></span> Delete
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div class="modal fade" id="advantageDescription" tabindex="-1" role="dialog" aria-labelledby="myCharacterAdvantageLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			
+        	<div class="advDescription" >
+        		<span class="advTitle" >{{currentTitle}}</span>        	
+        		<p>{{currentDescription}}</p>
+        	</div>
+		</div>
+	</div>
+</div>
