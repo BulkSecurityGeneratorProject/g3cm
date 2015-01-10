@@ -2,8 +2,12 @@ package org.dyndns.tarotmc.g3cm.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
 
+import org.dyndns.tarotmc.g3cm.domain.AttributeType;
 import org.dyndns.tarotmc.g3cm.domain.Character;
+import org.dyndns.tarotmc.g3cm.domain.CharacterAttribute;
 import org.dyndns.tarotmc.g3cm.domain.User;
+import org.dyndns.tarotmc.g3cm.repository.AttributeTypeRepository;
+import org.dyndns.tarotmc.g3cm.repository.CharacterAttributeRepository;
 import org.dyndns.tarotmc.g3cm.repository.CharacterRepository;
 import org.dyndns.tarotmc.g3cm.service.UserService;
 import org.slf4j.Logger;
@@ -31,6 +35,10 @@ public class CharacterResource {
     private CharacterRepository characterRepository;
     @Inject 
     UserService userService;
+    @Inject 
+    AttributeTypeRepository  attributeRepository ;
+    @Inject 
+    CharacterAttributeRepository  charAttRepository ;
 
     /**
      * POST  /rest/characters -> Create a new character.
@@ -41,9 +49,24 @@ public class CharacterResource {
     @Timed
     public void create(@RequestBody Character character) {
         log.debug("REST request to save Character : {}", character);
-        User user = userService.getUserWithAuthorities();
-        character.setUser(user);
+        User currentUser = userService.getUserWithAuthorities();
+        character.setUser(currentUser);
+        log.debug("adding attribute");
+        
+        
         characterRepository.save(character);
+        
+        for(AttributeType attribute : attributeRepository.findAll()){
+        	log.debug("Setting attribute"+attribute.getName());
+        	CharacterAttribute charAtt = new CharacterAttribute();
+        	charAtt.setPoints(0);
+        	charAtt.setBonus(0);
+        	charAtt.setAttributeType(attribute);
+        	charAtt.setRating(10);
+        	charAtt.setCharacter(character);
+        	charAttRepository.save(charAtt);
+        	//character.getCharacterAttributes().add(charAtt);
+        }
     }
 
     /**
@@ -55,8 +78,7 @@ public class CharacterResource {
     @Timed
     public List<Character> getAll() {
         log.debug("REST request to get all Characters");
-        User user = userService.getUserWithAuthorities();
-        return characterRepository.findAllByUserLogin(user.getLogin());
+        return characterRepository.findAll();
     }
 
     /**
@@ -68,7 +90,7 @@ public class CharacterResource {
     @Timed
     public ResponseEntity<Character> get(@PathVariable Long id, HttpServletResponse response) {
         log.debug("REST request to get Character : {}", id);
-        Character character = characterRepository.findOne(id);
+        Character character = characterRepository.findOneWithEagerRelationships(id);
         if (character == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }

@@ -6,10 +6,12 @@ var g3charactermanagerApp = angular.module('g3charactermanagerApp', ['http-auth-
     'ngResource', 'ngRoute', 'ngCookies', 'g3charactermanagerAppUtils', 'pascalprecht.translate', 'truncate', 'ngCacheBuster','restangular']);
 
 g3charactermanagerApp
-    .config(function ($routeProvider, $httpProvider, $translateProvider, tmhDynamicLocaleProvider, httpRequestInterceptorCacheBusterProvider, USER_ROLES) {
+    .config(function ($routeProvider, $httpProvider, $translateProvider, tmhDynamicLocaleProvider, httpRequestInterceptorCacheBusterProvider, USER_ROLES,RestangularProvider) {
 
             //Cache everything except rest api requests
             httpRequestInterceptorCacheBusterProvider.setMatchlist([/.*rest.*/],true);
+            
+            RestangularProvider.setBaseUrl('/app/rest');
 
             $routeProvider
                 .when('/register', {

@@ -20,19 +20,13 @@
                     </div>
                     <div class="modal-body">
                         <div class="form-group">
-                            <label>ID</label>
-                            <input type="text" class="form-control" name="id"
-                                   ng-model="character.id" readonly>
-                        </div>
-
-                        <div class="form-group">
                             <label>Name</label>
                             <input type="text" class="form-control"
                                    ng-model="character.name">
                         </div>
                         <div class="form-group">
                             <label>Age</label>
-                            <input type="number" class="form-control"
+                            <input type="text" class="form-control"
                                    ng-model="character.age">
                         </div>
                         <div class="form-group">
@@ -46,14 +40,14 @@
                                    ng-model="character.bio">
                         </div>
 
+                         <div class="form-group">
+                             <label>forms</label>
+                             <select class="form-control" multiple ng-model="character.forms" ng-options="form as form.name for form in forms track by form.id">
+                             </select>
+                         </div>
                         <div class="form-group">
                             <label>campaign</label>
                             <select class="form-control" ng-model="character.campaign.id" ng-options="campaign.id as campaign.name for campaign in campaigns">
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label>user</label>
-                            <select class="form-control" ng-model="character.user.id" ng-options="user.id as user.login for user in users">
                             </select>
                         </div>
 
@@ -75,30 +69,29 @@
         <table class="table table-striped">
             <thead>
                 <tr>
-                    <th>ID</th>
                     <th>Name</th>
                     <th>Age</th>
                     <th>Description</th>
-                    <th>Bio</th>
-                    <th>campaign</th>
-                    <th>user</th>
+                    <th>Campaign</th>
                     <th></th>
                 </tr>
             </thead>
             <tbody>
                 <tr ng-repeat="character in characters">
-                    <td>{{character.id}}</td>
                     <td>{{character.name}}</td>
                     <td>{{character.age}}</td>
                     <td>{{character.description}}</td>
-                    <td>{{character.bio}}</td>
                     <td>{{character.campaign.name}}</td>
-                    <td>{{character.user.login}}</td>
                     <td>
                         <button type="submit"
                                 ng-click="update(character.id)"
                                 class="btn btn-default">
-                            <span class="glyphicon glyphicon-pencil"></span> Edit
+                            <span class="glyphicon glyphicon-pencil"></span> Edit Basic Info
+                        </button>
+                        <button type="submit"
+                                ng-click="showMore(character.id)"
+                                class="btn btn-default">
+                            <span class="glyphicon glyphicon-pencil"></span> Edit All
                         </button>
                         <button type="submit"
                                 ng-click="delete(character.id)"

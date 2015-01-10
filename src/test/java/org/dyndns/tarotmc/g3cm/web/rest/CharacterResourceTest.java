@@ -38,8 +38,8 @@ public class CharacterResourceTest {
     private static final String DEFAULT_NAME = "SAMPLE_TEXT";
     private static final String UPDATED_NAME = "UPDATED_TEXT";
     
-    private static final Integer DEFAULT_AGE = 0;
-    private static final Integer UPDATED_AGE = 1;
+    private static final String DEFAULT_AGE = "SAMPLE_TEXT";
+    private static final String UPDATED_AGE = "UPDATED_TEXT";
     
     private static final String DEFAULT_DESCRIPTION = "SAMPLE_TEXT";
     private static final String UPDATED_DESCRIPTION = "UPDATED_TEXT";
@@ -107,7 +107,7 @@ public class CharacterResourceTest {
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andExpect(jsonPath("$.[0].id").value(character.getId().intValue()))
                 .andExpect(jsonPath("$.[0].name").value(DEFAULT_NAME.toString()))
-                .andExpect(jsonPath("$.[0].age").value(DEFAULT_AGE))
+                .andExpect(jsonPath("$.[0].age").value(DEFAULT_AGE.toString()))
                 .andExpect(jsonPath("$.[0].description").value(DEFAULT_DESCRIPTION.toString()))
                 .andExpect(jsonPath("$.[0].bio").value(DEFAULT_BIO.toString()));
     }
@@ -124,7 +124,7 @@ public class CharacterResourceTest {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON))
             .andExpect(jsonPath("$.id").value(character.getId().intValue()))
             .andExpect(jsonPath("$.name").value(DEFAULT_NAME.toString()))
-            .andExpect(jsonPath("$.age").value(DEFAULT_AGE))
+            .andExpect(jsonPath("$.age").value(DEFAULT_AGE.toString()))
             .andExpect(jsonPath("$.description").value(DEFAULT_DESCRIPTION.toString()))
             .andExpect(jsonPath("$.bio").value(DEFAULT_BIO.toString()));
     }

@@ -49,6 +49,18 @@ public class CharacterAttributeResource {
         log.debug("REST request to get all CharacterAttributes");
         return characterAttributeRepository.findAll();
     }
+    
+    /**
+     * GET  /rest/characterAttributes -> get all the characterAttributes.
+     */
+    @RequestMapping(value = "/rest/characters/{characterid}/characterAttributes",
+            method = RequestMethod.GET,
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    @Timed
+    public List<CharacterAttribute> getAllByCharacterId(@PathVariable Long characterid, HttpServletResponse response) {
+        log.debug("REST request to get CharacterAttribute with characterId : {}", characterid);
+        return characterAttributeRepository.findAllByCharacterId(characterid);
+    }
 
     /**
      * GET  /rest/characterAttributes/:id -> get the "id" characterAttribute.

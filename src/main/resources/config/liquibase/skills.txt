@@ -1,5 +1,4 @@
-
-ID;NAME;DESCRIPTION;DIFFICULTY;ATTRIBUTETYPE_ID  
-2;Abacus;Abacus Description;2;3
-3;Exorcism;Exorcism description;3;3
-4;Skating;Skating description;3;4
+name;description;difficulty;attributetype_id  
+Abacus;Abacus Description;2;3
+Exorcism;Exorcism description;3;3
+Skating;Skating description;3;4

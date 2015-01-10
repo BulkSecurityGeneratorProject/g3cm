@@ -38,6 +38,11 @@
                                 <span class="glyphicon glyphicon-home"></span>
                                 <span translate="global.menu.home">Home</span>
                             </a>
+                            <li ng-switch-when="true">
+                            	<a href="#/character">
+									My characters
+								</a>
+							</li>
                         </li>
                         <li ng-switch-when="true" class="dropdown pointer">
                             <a class="dropdown-toggle" data-toggle="dropdown" href="">
@@ -54,13 +59,14 @@
                                 <li ng-switch-when="true"><a href="#/attributeType"><span class="glyphicon glyphicon-asterisk"></span>&nbsp;Attribute Types</a></li>
                                 <li ng-switch-when="true"><a href="#/advantage"><span class="glyphicon glyphicon-asterisk"></span>&nbsp;Advantages / disadvantages</a></li>
                                 <li ng-switch-when="true"><a href="#/skill"><span class="glyphicon glyphicon-asterisk"></span>&nbsp;Skills</a></li>
-                                <!--                                 <li ng-switch-when="true"><a href="#/form"><span class="glyphicon glyphicon-asterisk"></span>&nbsp;form</a></li> -->
+                                <li ng-switch-when="true"><a href="#/form"><span class="glyphicon glyphicon-asterisk"></span>&nbsp;Forms</a></li>
 <!--                                 <li ng-switch-when="true"><a href="#/formSkillMod"><span class="glyphicon glyphicon-asterisk"></span>&nbsp;formSkillMod</a></li> -->
 <!--                                 <li ng-switch-when="true"><a href="#/formAttributeMod"><span class="glyphicon glyphicon-asterisk"></span>&nbsp;Form Attribute Mod</a></li> -->
-                                <li ng-switch-when="true"><a href="#/character"><span class="glyphicon glyphicon-asterisk"></span>&nbsp;My characters</a></li>
+                                
 <!--                                 <li ng-switch-when="true"><a href="#/characterSkill"><span class="glyphicon glyphicon-asterisk"></span>&nbsp;characterSkill</a></li> -->
 <!--                                 <li ng-switch-when="true"><a href="#/characterAttribute"><span class="glyphicon glyphicon-asterisk"></span>&nbsp;characterAttribute</a></li> -->
 <!--                                 <li ng-switch-when="true"><a href="#/characterAdvantage"><span class="glyphicon glyphicon-asterisk"></span>&nbsp;characterAdvantage</a></li> -->
+<!--                                 <li ng-switch-when="true"><a href="#/character"><span class="glyphicon glyphicon-asterisk"></span>&nbsp;character</a></li> -->
                                 <!-- JHipster will add entities to the menu here -->
                             </ul>
                         </li>
@@ -113,20 +119,20 @@
                                     &nbsp;<span translate="global.menu.account.apidocs">API Docs</span></a></li>
                             </ul>
                         </li>
-                        <li class="dropdown pointer" ng-controller="LanguageController">
-                            <a class="dropdown-toggle" data-toggle="dropdown" href="">
-                                <span>
-                                    <span class="glyphicon glyphicon-flag"></span>
-                                    <span class="hidden-tablet" translate="global.menu.language">Language</span>
-                                    <b class="caret"></b>
-                                </span>
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li active-menu="{{key}}" ng-repeat="(key, language) in languages">
-                                    <a href="" ng-click="changeLanguage(key)">{{language}}</a>
-                                </li>
-                            </ul>
-                        </li>
+<!--                         <li class="dropdown pointer" ng-controller="LanguageController"> -->
+<!--                             <a class="dropdown-toggle" data-toggle="dropdown" href=""> -->
+<!--                                 <span> -->
+<!--                                     <span class="glyphicon glyphicon-flag"></span> -->
+<!--                                     <span class="hidden-tablet" translate="global.menu.language">Language</span> -->
+<!--                                     <b class="caret"></b> -->
+<!--                                 </span> -->
+<!--                             </a> -->
+<!--                             <ul class="dropdown-menu"> -->
+<!--                                 <li active-menu="{{key}}" ng-repeat="(key, language) in languages"> -->
+<!--                                     <a href="" ng-click="changeLanguage(key)">{{language}}</a> -->
+<!--                                 </li> -->
+<!--                             </ul> -->
+<!--                         </li> -->
                     </ul>
                 </div>
             </div>
@@ -135,7 +141,8 @@
             <div class="well" ng-view=""></div>
 
             <div class="footer">
-                <p translate="footer">powered by determination</p>
+                <p>powered by determination</p>
+                
             </div>
         </div>
 
@@ -209,6 +216,10 @@
         <script src="scripts/formAttributeMod/service_formAttributeMod.js"></script>
         <script src="scripts/character/router_character.js"></script>
         <script src="scripts/character/controller_character.js"></script>
+        <script src="scripts/characterSkill/directive_characterSkill.js"></script>
+        <script src="scripts/characterAdvantage/directive_characterAdvantage.js"></script>
+        <script src="scripts/characterAttribute/directive_characterAttribute.js"></script>
+        <script src="scripts/character/controller_characterDetail.js"></script>
         <script src="scripts/character/service_character.js"></script>
         <script src="scripts/characterSkill/router_characterSkill.js"></script>
         <script src="scripts/characterSkill/controller_characterSkill.js"></script>

@@ -1,14 +1,14 @@
 'use strict';
 
-g3charactermanagerApp.controller('CharacterController', function ($scope, resolvedCharacter, Character, resolvedCampaign, resolvedForm, resolvedUser, resolvedCharacterSkill, resolvedCharacterAttribute, resolvedCharacterAdvantages) {
+g3charactermanagerApp.controller('CharacterController', function ($scope, $location,resolvedCharacter, Character, resolvedCharacterAdvantage, resolvedCharacterSkill, resolvedCharacterAttribute, resolvedUser, resolvedForm, resolvedCampaign) {
 
         $scope.characters = resolvedCharacter;
-        $scope.campaigns = resolvedCampaign;
-        $scope.forms = resolvedForm;
-        $scope.users = resolvedUser;
+        $scope.characterAdvantages = resolvedCharacterAdvantage;
         $scope.characterSkills = resolvedCharacterSkill;
         $scope.characterAttributes = resolvedCharacterAttribute;
-        $scope.characterAdvantagess = resolvedCharacterAdvantages;
+        $scope.users = resolvedUser;
+        $scope.forms = resolvedForm;
+        $scope.campaigns = resolvedCampaign;
 
         $scope.create = function () {
             Character.save($scope.character,
@@ -17,6 +17,11 @@ g3charactermanagerApp.controller('CharacterController', function ($scope, resolv
                     $('#saveCharacterModal').modal('hide');
                     $scope.clear();
                 });
+        };
+        
+        $scope.showMore = function(id){
+
+            $location.path("/character/"+id);
         };
 
         $scope.update = function (id) {

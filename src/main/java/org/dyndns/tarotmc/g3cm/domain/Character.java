@@ -1,12 +1,10 @@
 package org.dyndns.tarotmc.g3cm.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 import javax.persistence.*;
-
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
@@ -27,7 +25,7 @@ public class Character implements Serializable {
     private String name;
 
     @Column(name = "age")
-    private Integer age;
+    private String age;
 
     @Column(name = "description")
     private String description;
@@ -35,15 +33,10 @@ public class Character implements Serializable {
     @Column(name = "bio")
     private String bio;
 
-    @ManyToOne
-    private Campaign campaign;
-
-    @ManyToMany
+    @OneToMany(mappedBy = "character")
+    @JsonIgnore
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-    private Set<Form> forms = new HashSet<>();
-
-    @ManyToOne
-    private User user;
+    private Set<CharacterAdvantage> characterAdvantages = new HashSet<>();
 
     @OneToMany(mappedBy = "character")
     @JsonIgnore
@@ -55,10 +48,15 @@ public class Character implements Serializable {
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<CharacterAttribute> characterAttributes = new HashSet<>();
 
-    @OneToMany(mappedBy = "character")
-    @JsonIgnore
+    @ManyToOne
+    private User user;
+
+    @ManyToMany
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-    private Set<CharacterAdvantage> characterAdvantages = new HashSet<>();
+    private Set<Form> forms = new HashSet<>();
+
+    @ManyToOne
+    private Campaign campaign;
 
     public Long getId() {
         return id;
@@ -76,11 +74,11 @@ public class Character implements Serializable {
         this.name = name;
     }
 
-    public Integer getAge() {
+    public String getAge() {
         return age;
     }
 
-    public void setAge(Integer age) {
+    public void setAge(String age) {
         this.age = age;
     }
 
@@ -100,28 +98,12 @@ public class Character implements Serializable {
         this.bio = bio;
     }
 
-    public Campaign getCampaign() {
-        return campaign;
+    public Set<CharacterAdvantage> getCharacterAdvantages() {
+        return characterAdvantages;
     }
 
-    public void setCampaign(Campaign campaign) {
-        this.campaign = campaign;
-    }
-
-    public Set<Form> getForms() {
-        return forms;
-    }
-
-    public void setForms(Set<Form> forms) {
-        this.forms = forms;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
+    public void setCharacterAdvantages(Set<CharacterAdvantage> characterAdvantages) {
+        this.characterAdvantages = characterAdvantages;
     }
 
     public Set<CharacterSkill> getCharacterSkills() {
@@ -140,12 +122,28 @@ public class Character implements Serializable {
         this.characterAttributes = characterAttributes;
     }
 
-    public Set<CharacterAdvantage> getCharacterAdvantages() {
-        return characterAdvantages;
+    public User getUser() {
+        return user;
     }
 
-    public void setCharacterAdvantages(Set<CharacterAdvantage> characterAdvantages) {
-        this.characterAdvantages = characterAdvantages;
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public Set<Form> getForms() {
+        return forms;
+    }
+
+    public void setForms(Set<Form> forms) {
+        this.forms = forms;
+    }
+
+    public Campaign getCampaign() {
+        return campaign;
+    }
+
+    public void setCampaign(Campaign campaign) {
+        this.campaign = campaign;
     }
 
     @Override

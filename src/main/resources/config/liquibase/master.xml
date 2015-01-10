@@ -16,5 +16,11 @@
     <include file="classpath:config/liquibase/changelog/20141228122814_added_entity_CharacterSkill.xml" relativeToChangelogFile="false"/>
     <include file="classpath:config/liquibase/changelog/20141228123109_added_entity_CharacterAttribute.xml" relativeToChangelogFile="false"/>
     <include file="classpath:config/liquibase/changelog/20141228123521_added_entity_CharacterAdvantage.xml" relativeToChangelogFile="false"/>
+<!--     <include file="classpath:config/liquibase/changelog/20150102112033_added_entity_Character.xml" relativeToChangelogFile="false"/> -->
+<!--     <include file="classpath:config/liquibase/changelog/20150102112132_added_entity_Character.xml" relativeToChangelogFile="false"/> -->
+<!--     <include file="classpath:config/liquibase/changelog/20150102112452_added_entity_Character.xml" relativeToChangelogFile="false"/> -->
+<!--     <include file="classpath:config/liquibase/changelog/20150104132436_added_entity_Character.xml" relativeToChangelogFile="false"/> -->
     <!-- JHipster will add liquibase changelogs here -->
+    
+    <include file="classpath:config/liquibase/changelog/20150103080221_loader_files.xml" relativeToChangelogFile="false"/>
 </databaseChangeLog>

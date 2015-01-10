@@ -7,11 +7,11 @@ spring:
     
     datasource:
         dataSourceClassName: org.postgresql.ds.PGSimpleDataSource
-        url: 
+        url: jdbc:postgresql://localhost/g3CharacterManager
         databaseName: g3CharacterManager
         serverName: localhost
-        username: g3CharacterManager
-        password: 
+        username: g3cm
+        password: $adPanda
 
     jpa:
         database-platform: org.hibernate.dialect.PostgreSQLDialect
