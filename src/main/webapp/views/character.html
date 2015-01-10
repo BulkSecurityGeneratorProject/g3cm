@@ -86,8 +86,27 @@
 		<div class="form-group">
 			Description:{{selectedCharacter.description}}</div>
 		<div class="form-group">Biography:{{selectedCharacter.bio}}</div>
-		<div class="tabbed-control">
-			<character-advantages></character-advantages>
-		</div>
+	</div>
+	
+	<div class="tabbed-control">
+	<section>
+		<ul ng-init="tab = 1">
+			<li ng-class="{active:tab===1}"  ng-click="tab = 1"> 
+				<a href>Attributes</a>	
+			</li>
+			<li ng-class="{active:tab===2}" ng-click="tab = 2"> 
+				<a href >Advantages</a> 
+			</li>
+			<li ng-class="{active:tab===3}" ng-click="tab = 3"> 
+				<a href >Skills</a> 
+			</li>
+			<br><br>
+			<p ng-show="tab === 1"> <character-attributes></character-attributes></p>
+			<p ng-show="tab === 2"> <character-advantages></character-advantages> </p>
+			<p ng-show="tab === 3"> <character-skills></character-skills></p>
+		</ul>		
+	</section>	
+<!-- 		<div characterAttributes></div> -->
+<!-- 		<div ng-include="'views/tabbedCharacterAdvantages.html'"></div> -->
 	</div>
 </div>

@@ -33,9 +33,6 @@ public class Character implements Serializable {
     @Column(name = "bio")
     private String bio;
 
-    @ManyToOne
-    private Campaign campaign;
-
     @OneToMany(mappedBy = "character")
     @JsonIgnore
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
@@ -46,12 +43,20 @@ public class Character implements Serializable {
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<CharacterSkill> characterSkills = new HashSet<>();
 
+    @OneToMany(mappedBy = "character")
+    @JsonIgnore
+    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+    private Set<CharacterAttribute> characterAttributes = new HashSet<>();
+
+    @ManyToOne
+    private User user;
+
     @ManyToMany
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<Form> forms = new HashSet<>();
-    
+
     @ManyToOne
-    private User user;
+    private Campaign campaign;
 
     public Long getId() {
         return id;
@@ -93,14 +98,6 @@ public class Character implements Serializable {
         this.bio = bio;
     }
 
-    public Campaign getCampaign() {
-        return campaign;
-    }
-
-    public void setCampaign(Campaign campaign) {
-        this.campaign = campaign;
-    }
-
     public Set<CharacterAdvantage> getCharacterAdvantages() {
         return characterAdvantages;
     }
@@ -117,6 +114,22 @@ public class Character implements Serializable {
         this.characterSkills = characterSkills;
     }
 
+    public Set<CharacterAttribute> getCharacterAttributes() {
+        return characterAttributes;
+    }
+
+    public void setCharacterAttributes(Set<CharacterAttribute> characterAttributes) {
+        this.characterAttributes = characterAttributes;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
     public Set<Form> getForms() {
         return forms;
     }
@@ -124,16 +137,16 @@ public class Character implements Serializable {
     public void setForms(Set<Form> forms) {
         this.forms = forms;
     }
-    
-    public User getUser() {
-		return user;
-	}
 
-	public void setUser(User user) {
-		this.user = user;
-	}
+    public Campaign getCampaign() {
+        return campaign;
+    }
 
-	@Override
+    public void setCampaign(Campaign campaign) {
+        this.campaign = campaign;
+    }
+
+    @Override
     public boolean equals(Object o) {
         if (this == o) {
             return true;

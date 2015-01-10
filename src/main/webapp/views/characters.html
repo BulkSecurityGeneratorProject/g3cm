@@ -47,8 +47,8 @@
                         </div>
 
                         <div class="form-group">
-                            <label>campaign</label>
-                            <select class="form-control" ng-model="character.campaign.id" ng-options="campaign.id as campaign.name for campaign in campaigns">
+                            <label>user</label>
+                            <select class="form-control" ng-model="character.user.id" ng-options="user.id as user.login for user in users">
                             </select>
                         </div>
                          <div class="form-group">
@@ -56,6 +56,11 @@
                              <select class="form-control" multiple ng-model="character.forms" ng-options="form as form.name for form in forms track by form.id">
                              </select>
                          </div>
+                        <div class="form-group">
+                            <label>campaign</label>
+                            <select class="form-control" ng-model="character.campaign.id" ng-options="campaign.id as campaign.name for campaign in campaigns">
+                            </select>
+                        </div>
 
                     </div>
                     <div class="modal-footer">
@@ -79,8 +84,9 @@
                     <th>Name</th>
                     <th>Age</th>
                     <th>Description</th>
-                    <th>Bio</th>
-                    <th>campaign</th>
+                    <th>Biography</th>
+                    <th>User</th>
+                    <th>Campaign</th>
                     <th></th>
                 </tr>
             </thead>
@@ -91,6 +97,7 @@
                     <td>{{character.age}}</td>
                     <td>{{character.description}}</td>
                     <td>{{character.bio}}</td>
+                    <td>{{character.user.login}}</td>
                     <td>{{character.campaign.name}}</td>
                     <td>
                         <button type="submit"
@@ -98,7 +105,7 @@
                                 class="btn btn-default">
                             <span class="glyphicon glyphicon-pencil"></span> Edit Basic Info
                         </button>
-                         <button type="submit"
+                        <button type="submit"
                                 ng-click="showMore(character.id)"
                                 class="btn btn-default">
                             <span class="glyphicon glyphicon-pencil"></span> Edit All

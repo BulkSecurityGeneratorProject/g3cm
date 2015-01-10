@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+    <property name="now" value="now()" dbms="mysql,h2"/>
+    <property name="now" value="current_timestamp" dbms="postgresql"/>
+
+    <!--
+        Added the entity Character.
+    -->
+    <changeSet id="20150104132436" author="jhipster">
+        <createTable tableName="T_CHARACTER">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="name" type="varchar(255)"/>
+            <column name="age" type="varchar(255)"/>
+            <column name="description" type="varchar(255)"/>
+            <column name="bio" type="varchar(255)"/>
+            <column name="user_id" type="bigint"/>
+            <column name="campaign_id" type="bigint"/>
+        </createTable>
+        
+        <addForeignKeyConstraint baseColumnNames="user_id"
+                                 baseTableName="T_CHARACTER"
+                                 constraintName="fk_character_user_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="T_USER"/>
+        <createTable tableName="T_CHARACTER_T_FORM">
+            <column name="forms_id" type="bigint">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="characters_id" type="bigint">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+        </createTable>
+        <addForeignKeyConstraint baseColumnNames="forms_id"
+                                 baseTableName="T_CHARACTER_T_FORM"
+                                 constraintName="fk_character_form_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="T_FORM"/>
+        <addForeignKeyConstraint baseColumnNames="characters_id"
+                                 baseTableName="T_CHARACTER_T_FORM"
+                                 constraintName="fk_form_character_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="T_CHARACTER"/>
+        
+        <addForeignKeyConstraint baseColumnNames="campaign_id"
+                                 baseTableName="T_CHARACTER"
+                                 constraintName="fk_character_campaign_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="T_CAMPAIGN"/>
+    </changeSet>
+</databaseChangeLog>

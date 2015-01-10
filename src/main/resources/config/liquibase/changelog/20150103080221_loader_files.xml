@@ -16,5 +16,10 @@
                   separator=";"
                   tableName="T_CAMPAIGN">
         </loadData>
+<!--         <loadData encoding="UTF-8" -->
+<!--                   file="config/liquibase/forms.csv" -->
+<!--                   separator=";" -->
+<!--                   tableName="T_FORM"> -->
+<!--         </loadData> -->
     </changeSet>
 </databaseChangeLog>

@@ -1,7 +1,9 @@
 package org.dyndns.tarotmc.g3cm.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
+
 import org.dyndns.tarotmc.g3cm.domain.CharacterAdvantage;
+import org.dyndns.tarotmc.g3cm.domain.CharacterAttribute;
 import org.dyndns.tarotmc.g3cm.repository.CharacterAdvantageRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -12,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletResponse;
+
 import java.util.List;
 
 /**
@@ -48,6 +51,18 @@ public class CharacterAdvantageResource {
     public List<CharacterAdvantage> getAll() {
         log.debug("REST request to get all CharacterAdvantages");
         return characterAdvantageRepository.findAll();
+    }
+    
+    /**
+     * GET  /rest/characterAttributes -> get all the characterAttributes.
+     */
+    @RequestMapping(value = "/rest/character/{characterid}/characterAdvantages",
+            method = RequestMethod.GET,
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    @Timed
+    public List<CharacterAdvantage> getAllByCharacterId(@PathVariable Long characterid, HttpServletResponse response) {
+        log.debug("REST request to get CharacterAttribute with characterId : {}", characterid);
+        return characterAdvantageRepository.findAllByCharacterId(characterid);
     }
 
     /**
