@@ -3,7 +3,7 @@
 /* App Module */
 
 var g3charactermanagerApp = angular.module('g3charactermanagerApp', ['http-auth-interceptor', 'tmh.dynamicLocale',
-    'ngResource', 'ngRoute', 'ngCookies', 'g3charactermanagerAppUtils', 'pascalprecht.translate', 'truncate', 'ngCacheBuster']);
+    'ngResource', 'ngRoute', 'ngCookies', 'g3charactermanagerAppUtils', 'pascalprecht.translate', 'truncate', 'ngCacheBuster','restangular']);
 
 g3charactermanagerApp
     .config(function ($routeProvider, $httpProvider, $translateProvider, tmhDynamicLocaleProvider, httpRequestInterceptorCacheBusterProvider, USER_ROLES) {
