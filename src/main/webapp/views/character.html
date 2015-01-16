@@ -14,71 +14,70 @@
 				class="btn btn-danger">
 				<span class="glyphicon glyphicon-remove-circle"></span> Delete
 			</button>
-	<div class="modal fade" id="saveCharacterModal" tabindex="-1"
-		role="dialog" aria-labelledby="myCharacterLabel" aria-hidden="true">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<form name="form" role="form" novalidate
-					class="ng-scope ng-invalid ng-invalid-required ng-dirty ng-valid-minlength"
-					ng-submit="create()">
+	<div class="modal fade" id="saveCharacterModal" tabindex="-1" role="dialog" aria-labelledby="myCharacterLabel"
+         aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form name="form" role="form" novalidate
+                      class="ng-scope ng-invalid ng-invalid-required ng-dirty ng-valid-minlength"
+                      ng-submit="create()">
 
-					<div class="modal-header">
-						<button type="button" class="close" data-dismiss="modal"
-							aria-hidden="true" ng-click="clear()">&times;</button>
-						<h4 class="modal-title" id="myCharacterLabel">Create or edit
-							a Character</h4>
-					</div>
-					<div class="modal-body">
-						<div class="form-group">
-							<label>ID</label> <input type="text" class="form-control"
-								name="id" ng-model="character.id" readonly>
-						</div>
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                                ng-click="clear()">&times;</button>
+                        <h4 class="modal-title" id="myCharacterLabel">Create or edit a Character</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label>Name</label>
+                            <input type="text" class="form-control"
+                                   ng-model="character.name">
+                        </div>
+                        <div class="form-group">
+                            <label>Points</label>
+                            <input type="number" class="form-control"
+                                   ng-model="character.totalPoints">
+                        </div>
+                        <div class="form-group">
+                            <label>Age</label>
+                            <input type="text" class="form-control"
+                                   ng-model="character.age">
+                        </div>
+                        <div class="form-group">
+                        	<label>Description</label>
+                            <textarea class="form-control"
+                                   ng-model="character.description"/>
+                        </div>
+                        <div class="form-group">
+                            <label>Bio</label>
+                            <textarea type="text" class="form-control"
+                                   ng-model="character.bio"/>
+                        </div>
 
-						<div class="form-group">
-							<label>Name</label> <input type="text" class="form-control"
-								ng-model="character.name">
-						</div>
-						<div class="form-group">
-							<label>Age</label> <input type="text" class="form-control"
-								ng-model="character.age">
-						</div>
-						<div class="form-group">
-							<label>Description</label> <input type="text"
-								class="form-control" ng-model="character.description">
-						</div>
-						<div class="form-group">
-							<label>Bio</label> <input type="text" class="form-control"
-								ng-model="character.bio">
-						</div>
+                         <div class="form-group">
+                             <label>forms</label>
+                             <select class="form-control" multiple ng-model="character.forms" ng-options="form as form.name for form in forms track by form.id">
+                             </select>
+                         </div>
+                        <div class="form-group">
+                            <label>campaign</label>
+                            <select class="form-control" ng-model="character.campaign.id" ng-options="campaign.id as campaign.name for campaign in campaigns">
+                            </select>
+                        </div>
 
-						<div class="form-group">
-							<label>campaign</label> <select class="form-control"
-								ng-model="character.campaign.id"
-								ng-options="campaign.id as campaign.name for campaign in campaigns">
-							</select>
-						</div>
-						<div class="form-group">
-							<label>form</label> <select class="form-control" multiple
-								ng-model="character.forms"
-								ng-options="form as form.name for form in forms track by form.id">
-							</select>
-						</div>
-
-					</div>
-					<div class="modal-footer">
-						<button type="button" class="btn btn-default" data-dismiss="modal"
-							ng-click="clear()">
-							<span class="glyphicon glyphicon-ban-circle"></span> Cancel
-						</button>
-						<button type="submit" ng-disabled="form.$invalid"
-							class="btn btn-primary">
-							<span class="glyphicon glyphicon-save"></span> Save
-						</button>
-					</div>
-				</form>
-			</div>
-		</div>
-	</div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="clear()">
+                            <span class="glyphicon glyphicon-ban-circle"></span> Cancel
+                        </button>
+                        <button type="submit" ng-disabled="form.$invalid" class="btn btn-primary">
+                            <span class="glyphicon glyphicon-save"></span> Save
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 <br/><br/>
 	<div class="table-responsive">
 		<div class="form-group">Name:{{selectedCharacter.name}}</div>

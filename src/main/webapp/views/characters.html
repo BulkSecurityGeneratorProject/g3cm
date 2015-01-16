@@ -25,19 +25,24 @@
                                    ng-model="character.name">
                         </div>
                         <div class="form-group">
+                            <label>Points</label>
+                            <input type="text" class="form-control"
+                                   ng-model="character.totalPoints">
+                        </div>
+                        <div class="form-group">
                             <label>Age</label>
                             <input type="text" class="form-control"
                                    ng-model="character.age">
                         </div>
                         <div class="form-group">
-                            <label>Description</label>
-                            <input type="text" class="form-control"
-                                   ng-model="character.description">
+                        	<label>Description</label>
+                            <textarea class="form-control"
+                                   ng-model="character.description"/>
                         </div>
                         <div class="form-group">
                             <label>Bio</label>
-                            <input type="text" class="form-control"
-                                   ng-model="character.bio">
+                            <textarea type="text" class="form-control"
+                                   ng-model="character.bio"/>
                         </div>
 
                          <div class="form-group">
@@ -73,6 +78,7 @@
                     <th>Age</th>
                     <th>Description</th>
                     <th>Campaign</th>
+                    <th>Points Used</th>
                     <th></th>
                 </tr>
             </thead>
@@ -80,8 +86,9 @@
                 <tr ng-repeat="character in characters">
                     <td>{{character.name}}</td>
                     <td>{{character.age}}</td>
-                    <td>{{character.description}}</td>
+                    <td>{{character.description  | cut:true:100:' ...'}}</td>
                     <td>{{character.campaign.name}}</td>
+                    <td>{{character.usedPoints}}</td>
                     <td>
                         <button type="submit"
                                 ng-click="update(character.id)"

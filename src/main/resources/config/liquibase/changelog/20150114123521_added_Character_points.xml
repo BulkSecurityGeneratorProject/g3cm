@@ -11,10 +11,9 @@
         Added the entity CharacterAdvantage.
     -->
     <changeSet author="liquibase-docs" id="addPointColumns">
-    <addColumn catalogName="g3CharacterManager"
-            schemaName="public"
-            tableName="T_CHARACTER">
-        <column name="address" type="varchar(255)"/>
+    <addColumn tableName="T_CHARACTER">
+        <column name="total_points" type="bigint"/>
+        <column name="used_points" type="bigint"/>
     </addColumn>
 </changeSet>
 </databaseChangeLog>

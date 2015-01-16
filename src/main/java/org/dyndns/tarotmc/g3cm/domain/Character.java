@@ -26,6 +26,12 @@ public class Character implements Serializable {
 
     @Column(name = "age")
     private String age;
+    
+    @Column(name = "total_points")
+    private String totalPoints;
+    
+    @Column(name = "used_points")
+    private String usedPoints;
 
     @Column(name = "description")
     private String description;
@@ -146,7 +152,23 @@ public class Character implements Serializable {
         this.campaign = campaign;
     }
 
-    @Override
+    public String getTotalPoints() {
+		return totalPoints;
+	}
+
+	public void setTotalPoints(String totalPoints) {
+		this.totalPoints = totalPoints;
+	}
+
+	public String getUsedPoints() {
+		return usedPoints;
+	}
+
+	public void setUsedPoints(String usedPoints) {
+		this.usedPoints = usedPoints;
+	}
+
+	@Override
     public boolean equals(Object o) {
         if (this == o) {
             return true;
