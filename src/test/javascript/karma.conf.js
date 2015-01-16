@@ -14,6 +14,8 @@ module.exports = function (config) {
             'src/main/webapp/bower_components/modernizr/modernizr.js',
             'src/main/webapp/bower_components/jquery/dist/jquery.js',
             'src/main/webapp/bower_components/angular/angular.js',
+            'src/main/webapp/bower_components/underscore/underscore.js',
+            'src/main/webapp/bower_components/restangular/dist/restangular.js',
             'src/main/webapp/bower_components/angular-mocks/angular-mocks.js',
             'src/main/webapp/bower_components/angular-route/angular-route.js',
             'src/main/webapp/bower_components/angular-resource/angular-resource.js',

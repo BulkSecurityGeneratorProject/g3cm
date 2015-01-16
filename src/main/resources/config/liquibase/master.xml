@@ -21,6 +21,6 @@
 <!--     <include file="classpath:config/liquibase/changelog/20150102112452_added_entity_Character.xml" relativeToChangelogFile="false"/> -->
 <!--     <include file="classpath:config/liquibase/changelog/20150104132436_added_entity_Character.xml" relativeToChangelogFile="false"/> -->
     <!-- JHipster will add liquibase changelogs here -->
-    
+    <include file="classpath:config/liquibase/changelog/20150114123521_added_Character_points.xml" relativeToChangelogFile="false"/>
     <include file="classpath:config/liquibase/changelog/20150103080221_loader_files.xml" relativeToChangelogFile="false"/>
 </databaseChangeLog>

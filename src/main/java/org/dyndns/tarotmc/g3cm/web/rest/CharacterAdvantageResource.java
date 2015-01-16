@@ -56,7 +56,7 @@ public class CharacterAdvantageResource {
     /**
      * GET  /rest/characterAttributes -> get all the characterAttributes.
      */
-    @RequestMapping(value = "/rest/character/{characterid}/characterAdvantages",
+    @RequestMapping(value = "/rest/characters/{characterid}/characterAdvantages",
             method = RequestMethod.GET,
             produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed

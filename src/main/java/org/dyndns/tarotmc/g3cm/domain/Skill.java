@@ -24,6 +24,7 @@ public class Skill implements Serializable {
     @Column(name = "name")
     private String name;
 
+    @Lob
     @Column(name = "description")
     private String description;
 

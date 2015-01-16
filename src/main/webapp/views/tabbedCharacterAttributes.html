@@ -1,9 +1,7 @@
 <div>
 
-    <h2>Attributes</h2>
-
     <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#saveCharacterAttributeModal" ng-click="clear()">
-        <span class="glyphicon glyphicon-flash"></span> Create a new CharacterAttribute
+        <span class="glyphicon glyphicon-flash"></span> Create an Attribute
     </button>
     <div class="modal fade" id="saveCharacterAttributeModal" tabindex="-1" role="dialog" aria-labelledby="myCharacterAttributeLabel"
          aria-hidden="true">
@@ -26,25 +24,26 @@
 <!--                         </div> -->
 
                         <div class="form-group">
+                            <label>Attribute</label>
+                            <select class="form-control" ng-model="characterAttribute.attributeType.id" ng-options="attributeType.id as attributeType.name for attributeType in attributeTypes">
+                            </select>
+                        </div>
+
+                        <div class="form-group">
                             <label>Rating</label>
                             <input type="number" class="form-control"
                                    ng-model="characterAttribute.rating">
-                        </div>
-                        <div class="form-group">
-                            <label>Bonus</label>
-                            <input type="number" class="form-control"
-                                   ng-model="characterAttribute.bonus">
                         </div>
                         <div class="form-group">
                             <label>Points</label>
                             <input type="number" class="form-control"
                                    ng-model="characterAttribute.points">
                         </div>
-
+                        
                         <div class="form-group">
-                            <label>attributeType</label>
-                            <select class="form-control" ng-model="characterAttribute.attributeType.id" ng-options="attributeType.id as attributeType.name for attributeType in attributeTypes">
-                            </select>
+                            <label>Bonus</label>
+                            <input type="number" class="form-control"
+                                   ng-model="characterAttribute.bonus">
                         </div>
 <!--                         <div class="form-group"> -->
 <!--                             <label>character</label> -->
@@ -70,23 +69,19 @@
         <table class="table table-striped">
             <thead>
                 <tr>
-                    <th>ID</th>
+                    <th>Attribute</th>
                     <th>Rating</th>
-                    <th>Bonus</th>
                     <th>Points</th>
-                    <th>attributeType</th>
-                    <th>character</th>
+                    <th>Bonus</th>
                     <th></th>
                 </tr>
             </thead>
             <tbody>
                 <tr ng-repeat="characterAttribute in characterAttributes">
-                    <td>{{characterAttribute.id}}</td>
-                    <td>{{characterAttribute.rating}}</td>
-                    <td>{{characterAttribute.bonus}}</td>
-                    <td>{{characterAttribute.points}}</td>
                     <td>{{characterAttribute.attributeType.name}}</td>
-                    <td>{{characterAttribute.character.name}}</td>
+                    <td>{{characterAttribute.rating}}</td>
+                    <td>{{characterAttribute.points}}</td>
+                    <td>{{characterAttribute.bonus}}</td>
                     <td>
                         <button type="submit"
                                 ng-click="updateAttribute(characterAttribute.id)"

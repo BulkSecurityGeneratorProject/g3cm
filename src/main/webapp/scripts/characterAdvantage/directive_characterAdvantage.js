@@ -5,20 +5,20 @@ g3charactermanagerApp.directive('characterAdvantages',function(){
 	return {
 		restrict:'E',
 		templateUrl:'views/tabbedCharacterAdvantages.html',
-		controller: function($scope, Advantage, CharacterAdvantage){
-			$scope.characterAdvantages = CharacterAdvantage.query();
+		controller: function($scope, Advantage, CharacterAdvantage,Restangular,$routeParams){
+			$scope.characterAdvantages = Restangular.one('characters', $routeParams.characterId).getList('characterAdvantages').$object;
 	        $scope.advantages = Advantage.query();
 //	        $scope.characters = resolvedCharacter;
 
 //	        $scope.characterAdvantages = resolvedCharacterAdvantage;
-//	        console.log(CharacterAdvantage);
+	        console.log("in CharacterAdvantage");
 //	        $scope.characters = resolvedCharacter;
 
 	        $scope.createAdvantage = function () {
 	        	$scope.characterAdvantage.character=$scope.selectedCharacter;
 	            CharacterAdvantage.save($scope.characterAdvantage,
 	                function () {
-	                    $scope.characterAdvantages = CharacterAdvantage.query();
+	                    $scope.characterAdvantages = Restangular.one('characters', $routeParams.characterId).getList('characterAdvantages').$object;
 	                    $('#saveCharacterAdvantageModal').modal('hide');
 	                    $scope.clearAdvantage();
 	                });

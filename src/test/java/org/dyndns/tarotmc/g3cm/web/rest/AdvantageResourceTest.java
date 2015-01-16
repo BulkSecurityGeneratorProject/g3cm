@@ -66,6 +66,7 @@ public class AdvantageResourceTest {
         advantage.setName(DEFAULT_NAME);
         advantage.setDescription(DEFAULT_DESCRIPTION);
         advantage.setBasePoints(DEFAULT_BASE_POINTS);
+        advantageRepository.deleteAll();
     }
 
     @Test

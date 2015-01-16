@@ -6,3 +6,9 @@ g3charactermanagerApp.factory('Character', function ($resource) {
             'get': { method: 'GET'}
         });
     });
+
+g3charactermanagerApp.factory('RACharacter', function (Restangular) {
+	console.log("getting RACharacter");
+	 return Restangular.service('characters');
+});
+

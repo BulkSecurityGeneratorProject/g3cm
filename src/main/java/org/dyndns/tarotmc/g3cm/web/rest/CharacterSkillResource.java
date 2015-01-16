@@ -1,6 +1,7 @@
 package org.dyndns.tarotmc.g3cm.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
+
 import org.dyndns.tarotmc.g3cm.domain.CharacterSkill;
 import org.dyndns.tarotmc.g3cm.repository.CharacterSkillRepository;
 import org.slf4j.Logger;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletResponse;
+
 import java.util.List;
 
 /**
@@ -36,6 +38,18 @@ public class CharacterSkillResource {
     public void create(@RequestBody CharacterSkill characterSkill) {
         log.debug("REST request to save CharacterSkill : {}", characterSkill);
         characterSkillRepository.save(characterSkill);
+    }
+    
+    /**
+     * GET  /rest/characterSkills -> get all the characterSkills.
+     */
+    @RequestMapping(value = "/rest/characters/{characterid}/characterSkills",
+            method = RequestMethod.GET,
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    @Timed
+    public List<CharacterSkill> getAllForCharacter(@PathVariable Long characterid, HttpServletResponse response) {
+        log.debug("REST request to get all CharacterSkills");
+        return characterSkillRepository.findAllByCharacterId(characterid);
     }
 
     /**

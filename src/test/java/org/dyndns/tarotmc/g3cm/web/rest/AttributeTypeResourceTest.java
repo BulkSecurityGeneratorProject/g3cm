@@ -15,11 +15,13 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
+
 import java.util.List;
 
 import org.dyndns.tarotmc.g3cm.Application;
 import org.dyndns.tarotmc.g3cm.domain.AttributeType;
 import org.dyndns.tarotmc.g3cm.repository.AttributeTypeRepository;
+import org.dyndns.tarotmc.g3cm.repository.SkillRepository;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
@@ -41,6 +43,9 @@ public class AttributeTypeResourceTest {
 
     @Inject
     private AttributeTypeRepository attributeTypeRepository;
+    
+    @Inject
+    private SkillRepository skillRepository;
 
     private MockMvc restAttributeTypeMockMvc;
 
@@ -58,6 +63,8 @@ public class AttributeTypeResourceTest {
     public void initTest() {
         attributeType = new AttributeType();
         attributeType.setName(DEFAULT_NAME);
+        skillRepository.deleteAll();
+        attributeTypeRepository.deleteAll();
     }
 
     @Test

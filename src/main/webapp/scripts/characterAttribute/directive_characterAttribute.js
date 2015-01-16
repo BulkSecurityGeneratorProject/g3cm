@@ -6,8 +6,8 @@ g3charactermanagerApp.directive('characterAttributes', function() {
     return {
         restrict: 'E',
         templateUrl: 'views/tabbedCharacterAttributes.html',
-        controller: function($scope,  CharacterAttribute, AttributeType){
-        	$scope.characterAttributes = CharacterAttribute.query();
+        controller: function($scope,  CharacterAttribute, AttributeType,Restangular,$routeParams){
+        	$scope.characterAttributes = Restangular.one('characters', $routeParams.characterId).getList('characterAttributes').$object;
             $scope.attributeTypes = AttributeType.query();
             
 

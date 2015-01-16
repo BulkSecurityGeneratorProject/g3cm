@@ -70,6 +70,7 @@ public class FormResourceTest {
         form.setIncon(DEFAULT_INCON);
         form.setPhysicalChange(DEFAULT_PHYSICAL_CHANGE);
         form.setSortOrder(DEFAULT_SORT_ORDER);
+        formRepository.deleteAll();
     }
 
     @Test

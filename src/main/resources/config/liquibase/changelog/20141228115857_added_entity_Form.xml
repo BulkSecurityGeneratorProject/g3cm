@@ -25,7 +25,7 @@
             <column name="advantages_id" type="bigint">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
-            <column name="forms_id" type="bigint">
+            <column name="t_form_id" type="bigint">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
         </createTable>
@@ -34,7 +34,7 @@
                                  constraintName="fk_form_advantage_id"
                                  referencedColumnNames="id"
                                  referencedTableName="T_ADVANTAGE"/>
-        <addForeignKeyConstraint baseColumnNames="forms_id"
+        <addForeignKeyConstraint baseColumnNames="t_form_id"
                                  baseTableName="T_FORM_T_ADVANTAGE"
                                  constraintName="fk_advantage_form_id"
                                  referencedColumnNames="id"

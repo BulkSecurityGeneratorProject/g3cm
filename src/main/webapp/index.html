@@ -38,6 +38,11 @@
                                 <span class="glyphicon glyphicon-home"></span>
                                 <span translate="global.menu.home">Home</span>
                             </a>
+                            <li ng-switch-when="true">
+                            	<a href="#/character">
+									My characters
+								</a>
+							</li>
                         </li>
                         <li ng-switch-when="true" class="dropdown pointer">
                             <a class="dropdown-toggle" data-toggle="dropdown" href="">
@@ -57,10 +62,10 @@
                                 <li ng-switch-when="true"><a href="#/form"><span class="glyphicon glyphicon-asterisk"></span>&nbsp;Forms</a></li>
 <!--                                 <li ng-switch-when="true"><a href="#/formSkillMod"><span class="glyphicon glyphicon-asterisk"></span>&nbsp;formSkillMod</a></li> -->
 <!--                                 <li ng-switch-when="true"><a href="#/formAttributeMod"><span class="glyphicon glyphicon-asterisk"></span>&nbsp;Form Attribute Mod</a></li> -->
-                                <li ng-switch-when="true"><a href="#/character"><span class="glyphicon glyphicon-asterisk"></span>&nbsp;My characters</a></li>
+                                
 <!--                                 <li ng-switch-when="true"><a href="#/characterSkill"><span class="glyphicon glyphicon-asterisk"></span>&nbsp;characterSkill</a></li> -->
 <!--                                 <li ng-switch-when="true"><a href="#/characterAttribute"><span class="glyphicon glyphicon-asterisk"></span>&nbsp;characterAttribute</a></li> -->
-                                <li ng-switch-when="true"><a href="#/characterAdvantage"><span class="glyphicon glyphicon-asterisk"></span>&nbsp;characterAdvantage</a></li>
+<!--                                 <li ng-switch-when="true"><a href="#/characterAdvantage"><span class="glyphicon glyphicon-asterisk"></span>&nbsp;characterAdvantage</a></li> -->
 <!--                                 <li ng-switch-when="true"><a href="#/character"><span class="glyphicon glyphicon-asterisk"></span>&nbsp;character</a></li> -->
                                 <!-- JHipster will add entities to the menu here -->
                             </ul>
@@ -114,20 +119,20 @@
                                     &nbsp;<span translate="global.menu.account.apidocs">API Docs</span></a></li>
                             </ul>
                         </li>
-                        <li class="dropdown pointer" ng-controller="LanguageController">
-                            <a class="dropdown-toggle" data-toggle="dropdown" href="">
-                                <span>
-                                    <span class="glyphicon glyphicon-flag"></span>
-                                    <span class="hidden-tablet" translate="global.menu.language">Language</span>
-                                    <b class="caret"></b>
-                                </span>
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li active-menu="{{key}}" ng-repeat="(key, language) in languages">
-                                    <a href="" ng-click="changeLanguage(key)">{{language}}</a>
-                                </li>
-                            </ul>
-                        </li>
+<!--                         <li class="dropdown pointer" ng-controller="LanguageController"> -->
+<!--                             <a class="dropdown-toggle" data-toggle="dropdown" href=""> -->
+<!--                                 <span> -->
+<!--                                     <span class="glyphicon glyphicon-flag"></span> -->
+<!--                                     <span class="hidden-tablet" translate="global.menu.language">Language</span> -->
+<!--                                     <b class="caret"></b> -->
+<!--                                 </span> -->
+<!--                             </a> -->
+<!--                             <ul class="dropdown-menu"> -->
+<!--                                 <li active-menu="{{key}}" ng-repeat="(key, language) in languages"> -->
+<!--                                     <a href="" ng-click="changeLanguage(key)">{{language}}</a> -->
+<!--                                 </li> -->
+<!--                             </ul> -->
+<!--                         </li> -->
                     </ul>
                 </div>
             </div>
@@ -165,6 +170,8 @@
         <script src="bower_components/angular-translate-loader-static-files/angular-translate-loader-static-files.js"></script>
         <script src="bower_components/angular-dynamic-locale/src/tmhDynamicLocale.js"></script>
         <script src="bower_components/angular-cache-buster/angular-cache-buster.js"></script>
+        <script src="bower_components/restangular/dist/restangular.js"></script>
+        <script src="bower_components/underscore/underscore.js"></script>
         <script src="scripts/http-auth-interceptor.js"></script>
         <script src="scripts/truncate.js"></script>
         <script src="scripts/utils.js"></script>

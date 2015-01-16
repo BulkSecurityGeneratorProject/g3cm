@@ -66,6 +66,7 @@ public class SkillResourceTest {
         skill.setName(DEFAULT_NAME);
         skill.setDescription(DEFAULT_DESCRIPTION);
         skill.setDifficulty(DEFAULT_DIFFICULTY);
+        skillRepository.deleteAll();
     }
 
     @Test

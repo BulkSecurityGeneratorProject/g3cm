@@ -1,17 +1,22 @@
 'use strict';
 
-g3charactermanagerApp.controller('CharacterDetailController', function ($scope, $routeParams,$location, $log,resolvedCharacter, Character, resolvedCampaign, resolvedCharacterAdvantage, resolvedCharacterSkill, resolvedForm,CharacterAdvantage,resolvedAdvantage) {
+g3charactermanagerApp.controller('CharacterDetailController', function ($scope, $routeParams,$location, $log,RACharacter,resolvedCharacter, Character, resolvedCampaign, resolvedCharacterAdvantage, resolvedCharacterSkill, resolvedForm,CharacterAdvantage,resolvedAdvantage) {
 
         $scope.characters = resolvedCharacter;
         $scope.campaigns = resolvedCampaign;
-        $scope.characterAdvantages = resolvedCharacterAdvantage//resolvedCharacterAdvantageByCharacter//resolvedCharacterAdvantage;
+        $scope.characterAdvantages = resolvedCharacterAdvantage;//resolvedCharacterAdvantageByCharacter//resolvedCharacterAdvantage;
         $scope.advantages = resolvedAdvantage;
         $scope.characterSkills = resolvedCharacterSkill;
         $scope.forms = resolvedForm;
         $scope.currentDescription = '';
         $scope.currentTitle = '';
         
+//        $scope.tester =Restangular.one('characters', 1).getList('characterSkills')
+//        console.log("Tester");
+//        console.log($scope.tester);
+//        console.log("End Tester");
         $scope.selectedCharacter=Character.get({id:$routeParams.characterId});
+        $scope.basechar=RACharacter.one($routeParams.characterId).get();
 
         $scope.create = function () {
             Character.save($scope.character,
