@@ -9,6 +9,7 @@ import org.dyndns.tarotmc.g3cm.domain.User;
 import org.dyndns.tarotmc.g3cm.repository.AttributeTypeRepository;
 import org.dyndns.tarotmc.g3cm.repository.CharacterAttributeRepository;
 import org.dyndns.tarotmc.g3cm.repository.CharacterRepository;
+import org.dyndns.tarotmc.g3cm.service.CharacterPointService;
 import org.dyndns.tarotmc.g3cm.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -39,6 +40,8 @@ public class CharacterResource {
     AttributeTypeRepository  attributeRepository ;
     @Inject 
     CharacterAttributeRepository  charAttRepository ;
+    @Inject
+    private CharacterPointService pointService;
 
     /**
      * POST  /rest/characters -> Create a new character.
@@ -106,6 +109,15 @@ public class CharacterResource {
     @Timed
     public void delete(@PathVariable Long id) {
         log.debug("REST request to delete Character : {}", id);
+        charAttRepository.getPointTotalForAttributesByCharacterId(characterId)arg0);
         characterRepository.delete(id);
+    }
+    
+    @RequestMapping(value = "/rest/characterpoints/{id}",
+            method = RequestMethod.GET,
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    @Timed
+    public void calculatePoints(@PathVariable Long id){
+    	pointService.CalculateUsedPoints(id);
     }
 }

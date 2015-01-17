@@ -1,10 +1,13 @@
 package org.dyndns.tarotmc.g3cm.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
+import javax.persistence.CascadeType;
 
 import javax.persistence.*;
+
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
@@ -28,10 +31,10 @@ public class Character implements Serializable {
     private String age;
     
     @Column(name = "total_points")
-    private String totalPoints;
+    private Long totalPoints;
     
     @Column(name = "used_points")
-    private String usedPoints;
+    private Long usedPoints;
 
     @Column(name = "description")
     private String description;
@@ -39,17 +42,17 @@ public class Character implements Serializable {
     @Column(name = "bio")
     private String bio;
 
-    @OneToMany(mappedBy = "character")
+    @OneToMany(cascade=CascadeType.ALL, mappedBy = "character")
     @JsonIgnore
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<CharacterAdvantage> characterAdvantages = new HashSet<>();
 
-    @OneToMany(mappedBy = "character")
+    @OneToMany(cascade=CascadeType.ALL, mappedBy = "character")
     @JsonIgnore
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<CharacterSkill> characterSkills = new HashSet<>();
 
-    @OneToMany(mappedBy = "character")
+    @OneToMany(cascade=CascadeType.ALL, mappedBy = "character")
     @JsonIgnore
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<CharacterAttribute> characterAttributes = new HashSet<>();
@@ -152,19 +155,19 @@ public class Character implements Serializable {
         this.campaign = campaign;
     }
 
-    public String getTotalPoints() {
+	public Long getTotalPoints() {
 		return totalPoints;
 	}
 
-	public void setTotalPoints(String totalPoints) {
+	public void setTotalPoints(Long totalPoints) {
 		this.totalPoints = totalPoints;
 	}
 
-	public String getUsedPoints() {
+	public Long getUsedPoints() {
 		return usedPoints;
 	}
 
-	public void setUsedPoints(String usedPoints) {
+	public void setUsedPoints(Long usedPoints) {
 		this.usedPoints = usedPoints;
 	}
 

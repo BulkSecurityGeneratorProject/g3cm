@@ -20,6 +20,7 @@ g3charactermanagerApp.directive('characterSkills', function() {
                         $scope.characterSkills = Restangular.one('characters', $routeParams.characterId).getList('characterSkills').$object;
                         $('#saveCharacterSkillModal').modal('hide');
                         $scope.clear();
+	                    $scope.refreshCharacter();
                     });
             };
 
@@ -32,6 +33,7 @@ g3charactermanagerApp.directive('characterSkills', function() {
                 CharacterSkill.delete({id: id},
                     function () {
                         $scope.characterSkills = CharacterSkill.query();
+	                    $scope.refreshCharacter();
                     });
             };
 

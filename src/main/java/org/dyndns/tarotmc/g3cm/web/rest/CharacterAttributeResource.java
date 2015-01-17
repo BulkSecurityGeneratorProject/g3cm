@@ -1,8 +1,10 @@
 package org.dyndns.tarotmc.g3cm.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
+
 import org.dyndns.tarotmc.g3cm.domain.CharacterAttribute;
 import org.dyndns.tarotmc.g3cm.repository.CharacterAttributeRepository;
+import org.dyndns.tarotmc.g3cm.service.CharacterPointService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
@@ -12,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletResponse;
+
 import java.util.List;
 
 /**
@@ -25,6 +28,7 @@ public class CharacterAttributeResource {
 
     @Inject
     private CharacterAttributeRepository characterAttributeRepository;
+    
 
     /**
      * POST  /rest/characterAttributes -> Create a new characterAttribute.
@@ -36,6 +40,7 @@ public class CharacterAttributeResource {
     public void create(@RequestBody CharacterAttribute characterAttribute) {
         log.debug("REST request to save CharacterAttribute : {}", characterAttribute);
         characterAttributeRepository.save(characterAttribute);
+//        pointService.CalculateUsedPoints(characterAttribute.getCharacter().getId());
     }
 
     /**
@@ -87,6 +92,9 @@ public class CharacterAttributeResource {
     @Timed
     public void delete(@PathVariable Long id) {
         log.debug("REST request to delete CharacterAttribute : {}", id);
+//        long characterId = characterAttributeRepository.getOne(id).getId();
+//        log.debug("Characterid:"+characterId);
         characterAttributeRepository.delete(id);
+//        pointService.CalculateUsedPoints(characterId);
     }
 }

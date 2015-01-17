@@ -5,6 +5,7 @@ import com.codahale.metrics.annotation.Timed;
 import org.dyndns.tarotmc.g3cm.domain.CharacterAdvantage;
 import org.dyndns.tarotmc.g3cm.domain.CharacterAttribute;
 import org.dyndns.tarotmc.g3cm.repository.CharacterAdvantageRepository;
+import org.dyndns.tarotmc.g3cm.service.CharacterPointService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
@@ -28,6 +29,9 @@ public class CharacterAdvantageResource {
 
     @Inject
     private CharacterAdvantageRepository characterAdvantageRepository;
+    
+    @Inject
+    private CharacterPointService pointService;
 
     /**
      * POST  /rest/characterAdvantages -> Create a new characterAdvantage.
@@ -39,6 +43,7 @@ public class CharacterAdvantageResource {
     public void create(@RequestBody CharacterAdvantage characterAdvantage) {
         log.debug("REST request to save CharacterAdvantage : {}", characterAdvantage);
         characterAdvantageRepository.save(characterAdvantage);
+        pointService.CalculateUsedPoints(characterAdvantage.getCharacter().getId());
     }
 
     /**
@@ -90,6 +95,9 @@ public class CharacterAdvantageResource {
     @Timed
     public void delete(@PathVariable Long id) {
         log.debug("REST request to delete CharacterAdvantage : {}", id);
+        long characterId = characterAdvantageRepository.getOne(id).getCharacter().getId();
+        log.debug("Characterid:"+characterId);
         characterAdvantageRepository.delete(id);
+        pointService.CalculateUsedPoints(characterId);
     }
 }

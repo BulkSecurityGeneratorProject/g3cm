@@ -21,6 +21,7 @@ g3charactermanagerApp.directive('characterAdvantages',function(){
 	                    $scope.characterAdvantages = Restangular.one('characters', $routeParams.characterId).getList('characterAdvantages').$object;
 	                    $('#saveCharacterAdvantageModal').modal('hide');
 	                    $scope.clearAdvantage();
+	                    $scope.refreshCharacter();
 	                });
 	        };
 
@@ -33,6 +34,7 @@ g3charactermanagerApp.directive('characterAdvantages',function(){
 	            CharacterAdvantage.delete({id: id},
 	                function () {
 	                    $scope.characterAdvantages = CharacterAdvantage.query();
+	                    $scope.refreshCharacter();
 	                });
 	        };
 

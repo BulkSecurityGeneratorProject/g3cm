@@ -31,11 +31,11 @@ spring:
     mail:
         baseUrl: http://localhost:8080
         host: smtp.gmail.com
-        port: 25
+        port: 587
         user: kazrap@gmail.com
         password: Th3r3#No*5poon
         protocol: smtp
-        tls: false
+        tls: true
         auth: true
         from: kazrap@gmail.com
 

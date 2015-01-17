@@ -124,4 +124,4 @@ angular.module('g3charactermanagerApp')
                 });
             }
         };
-    });
+    })

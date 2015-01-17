@@ -4,6 +4,7 @@ import com.codahale.metrics.annotation.Timed;
 
 import org.dyndns.tarotmc.g3cm.domain.CharacterSkill;
 import org.dyndns.tarotmc.g3cm.repository.CharacterSkillRepository;
+import org.dyndns.tarotmc.g3cm.service.CharacterPointService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
@@ -28,6 +29,9 @@ public class CharacterSkillResource {
     @Inject
     private CharacterSkillRepository characterSkillRepository;
 
+//    @Inject
+//    private CharacterPointService pointService;
+
     /**
      * POST  /rest/characterSkills -> Create a new characterSkill.
      */
@@ -38,6 +42,7 @@ public class CharacterSkillResource {
     public void create(@RequestBody CharacterSkill characterSkill) {
         log.debug("REST request to save CharacterSkill : {}", characterSkill);
         characterSkillRepository.save(characterSkill);
+//        pointService.CalculateUsedPoints(characterSkill.getCharacter().getId());
     }
     
     /**
@@ -89,6 +94,9 @@ public class CharacterSkillResource {
     @Timed
     public void delete(@PathVariable Long id) {
         log.debug("REST request to delete CharacterSkill : {}", id);
+        long characterId = characterSkillRepository.getOne(id).getCharacter().getId();
+        log.debug("Characterid:"+characterId);
         characterSkillRepository.delete(id);
+//        pointService.CalculateUsedPoints(characterId);
     }
 }

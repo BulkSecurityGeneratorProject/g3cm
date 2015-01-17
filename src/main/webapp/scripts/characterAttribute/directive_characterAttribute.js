@@ -19,6 +19,7 @@ g3charactermanagerApp.directive('characterAttributes', function() {
                         $scope.characterAttributes = CharacterAttribute.query();
                         $('#saveCharacterAttributeModal').modal('hide');
                         $scope.clear();
+	                    $scope.refreshCharacter();
                     });
             };
 
@@ -31,12 +32,95 @@ g3charactermanagerApp.directive('characterAttributes', function() {
                 CharacterAttribute.delete({id: id},
                     function () {
                         $scope.characterAttributes = CharacterAttribute.query();
+	                    $scope.refreshCharacter();
                     });
             };
 
             $scope.clearAttribute = function () {
                 $scope.characterAttribute = {rating: null, bonus: null, points: null, id: null};
             };
+
+	        $scope.guessPoints=function(){
+	        	console.log("Guessing points");
+	        	var bonus=0;
+	        	if($scope.characterAttribute.bonus){
+	        		bonus=$scope.characterAttribute.bonus;
+	        	}
+	        	var rating=$scope.characterAttribute.rating - bonus;
+	        	var points=0;
+	        	console.log("rating:"+rating);
+	        	switch(rating){
+		        	case 1:
+		        		points = -80;
+		        		break;
+		        	case 2:
+		        		points = -70;
+		        		break;
+		        	case 3:
+		        		points = -60;
+		        		break;
+		        	case 4:
+		        		points = -50;
+		        		break;
+		        	case 5:
+		        		points = -40;
+		        		break;
+	        		case 6:
+		        		points = -30;
+		        		break;
+	        		case 7:
+		        		points = -20;
+		        		break;
+	        		case 8:
+		        		points = -15;
+		        		break;
+	        		case 9:
+		        		points = -10;
+		        		break;
+	        		case 10:
+		        		points = 0;
+		        		break;
+	        		case 11:
+		        		points = 10;
+		        		break;
+	        		case 12:
+		        		points = 20;
+		        		break;
+	        		case 13:
+		        		points = 30;
+		        		break;
+	        		case 14:
+		        		points = 45;
+		        		break;
+	        		case 15:
+		        		points = 60;
+		        		break;
+	        		case 16:
+		        		points = 80;
+		        		break;
+	        		case 17:
+		        		points = 100;
+		        		break;
+	        		case 18:
+		        		points = 125;
+		        		break;
+	        		case 19:
+		        		points = 150;
+		        		break;
+	        		case 20:
+		        		points = 175;
+		        		break;
+	        		default:
+	        			if(rating>20){
+	        				var extrapts =(rating-20)*25;
+	        				points=175+extrapts;
+	        			}
+	        			break;	
+	        	}
+	        	
+    			$scope.characterAttribute.points = points;
+    			console.log($scope.characterAttribute.points);
+	        }
         }
     };
 });

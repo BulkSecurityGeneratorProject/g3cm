@@ -11,6 +11,7 @@ g3charactermanagerApp.controller('CharacterController', function ($scope, $locat
         $scope.campaigns = resolvedCampaign;
 
         $scope.create = function () {
+        	$scope.character.usedPoints=0;
             Character.save($scope.character,
                 function () {
                     $scope.characters = Character.query();
