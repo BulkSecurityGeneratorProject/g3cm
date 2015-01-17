@@ -109,7 +109,6 @@ public class CharacterResource {
     @Timed
     public void delete(@PathVariable Long id) {
         log.debug("REST request to delete Character : {}", id);
-        charAttRepository.getPointTotalForAttributesByCharacterId(characterId)arg0);
         characterRepository.delete(id);
     }
     

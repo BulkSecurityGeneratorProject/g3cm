@@ -94,8 +94,8 @@ public class CharacterSkillResource {
     @Timed
     public void delete(@PathVariable Long id) {
         log.debug("REST request to delete CharacterSkill : {}", id);
-        long characterId = characterSkillRepository.getOne(id).getCharacter().getId();
-        log.debug("Characterid:"+characterId);
+//        long characterId = characterSkillRepository.getOne(id).getCharacter().getId();
+//        log.debug("Characterid:"+characterId);
         characterSkillRepository.delete(id);
 //        pointService.CalculateUsedPoints(characterId);
     }

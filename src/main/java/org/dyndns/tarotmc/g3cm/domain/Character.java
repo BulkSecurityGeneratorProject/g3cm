@@ -42,17 +42,17 @@ public class Character implements Serializable {
     @Column(name = "bio")
     private String bio;
 
-    @OneToMany(cascade=CascadeType.ALL, mappedBy = "character")
+    @OneToMany(mappedBy = "character")
     @JsonIgnore
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<CharacterAdvantage> characterAdvantages = new HashSet<>();
 
-    @OneToMany(cascade=CascadeType.ALL, mappedBy = "character")
+    @OneToMany(mappedBy = "character")
     @JsonIgnore
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<CharacterSkill> characterSkills = new HashSet<>();
 
-    @OneToMany(cascade=CascadeType.ALL, mappedBy = "character")
+    @OneToMany(mappedBy = "character")
     @JsonIgnore
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<CharacterAttribute> characterAttributes = new HashSet<>();
