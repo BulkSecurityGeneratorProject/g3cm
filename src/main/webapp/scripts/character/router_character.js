@@ -64,6 +64,9 @@ g3charactermanagerApp
                         resolvedForm: ['Form', function (Form) {
                             return Form.query().$promise;
                         }],
+                        resolvedCharacterPool: ['CharacterPool', function (CharacterPool) {
+                            return CharacterPool.query().$promise;
+                        }],
                         resolvedCampaign: ['Campaign', function (Campaign) {
                             return Campaign.query().$promise;
                         }]

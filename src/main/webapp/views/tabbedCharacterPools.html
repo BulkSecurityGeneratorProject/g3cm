@@ -1,0 +1,110 @@
+<div>
+
+	<h2>CharacterPools</h2>
+
+	<button class="btn btn-primary btn-lg" data-toggle="modal"
+		data-target="#saveCharacterPoolModal" ng-click="clearPool()">
+		<span class="glyphicon glyphicon-flash"></span> Create a new
+		CharacterPool
+	</button>
+	<div class="modal fade" id="saveCharacterPoolModal" tabindex="-1"
+		role="dialog" aria-labelledby="myCharacterPoolLabel"
+		aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<form name="form" role="form" novalidate
+					class="ng-scope ng-invalid ng-invalid-required ng-dirty ng-valid-minlength"
+					ng-submit="createPool()">
+
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal"
+							aria-hidden="true" ng-click="clearPool()">&times;</button>
+						<h4 class="modal-title" id="myCharacterPoolLabel">Create or
+							edit a CharacterPool</h4>
+					</div>
+					<div class="modal-body">
+						<div class="form-group">
+							<label>Max</label> <input type="number" class="form-control"
+								ng-model="characterPool.max">
+						</div>
+						<div class="form-group">
+							<label>Current</label> <input type="number" class="form-control"
+								ng-model="characterPool.current">
+						</div>
+
+						<div class="form-group">
+							<label>pool</label> <select class="form-control"
+								ng-model="characterPool.pool.id"
+								ng-options="pool.id as pool.name for pool in pools">
+							</select>
+						</div>
+
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal"
+							ng-click="clearPool()">
+							<span class="glyphicon glyphicon-ban-circle"></span> Cancel
+						</button>
+						<button type="submit" ng-disabled="form.$invalid"
+							class="btn btn-primary">
+							<span class="glyphicon glyphicon-save"></span> Save
+						</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+
+	<div class="table-responsive">
+		<table class="table table-striped">
+			<thead>
+				<!--                 <tr> -->
+				<!--                     <th>Max</th> -->
+				<!--                     <th>Current</th> -->
+				<!--                     <th>pool</th> -->
+				<!--                 </tr> -->
+			</thead>
+			<tbody>
+				<tr ng-repeat="characterPool in characterPools">
+					<td>
+						<table class="table meter-table">
+							<tbody>
+								<tr>
+									<td colspan="2">
+										{{characterPool.pool.name}}:&nbsp;{{characterPool.current}}&nbsp;/&nbsp;{{characterPool.max}}
+									</td>
+								</tr>
+								<tr>
+									<td>
+
+										<div class="meter">
+											<span ng-style="set_meter_width(characterPool)"></span>
+										</div>
+									</td>
+
+									<td>
+										<button type="submit" ng-click="modpool(characterPool.id,1);" class="btn btn-default">
+											<span class="glyphicon glyphicon-arrow-up"></span>
+										</button>
+										<button type="submit" ng-click="modpool(characterPool.id,-1);" class="btn btn-default">
+											<span class="glyphicon glyphicon-arrow-down"></span>
+										</button>
+										<button type="submit" ng-click="updatePool(characterPool.id)"
+											class="btn btn-default">
+											<span class="glyphicon glyphicon-pencil"></span> Edit
+										</button>
+										<button type="submit" ng-click="deletePool(characterPool.id)"
+											class="btn btn-danger">
+											<span class="glyphicon glyphicon-remove-circle"></span>
+											Delete
+										</button>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>

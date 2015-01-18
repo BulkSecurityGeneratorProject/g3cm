@@ -7,7 +7,9 @@ g3charactermanagerApp.directive('characterAttributes', function() {
         restrict: 'E',
         templateUrl: 'views/tabbedCharacterAttributes.html',
         controller: function($scope,  CharacterAttribute, AttributeType,Restangular,$routeParams){
+        	console.log("att dir");
         	$scope.characterAttributes = Restangular.one('characters', $routeParams.characterId).getList('characterAttributes').$object;
+        	console.log($scope.characterAttributes);
             $scope.attributeTypes = AttributeType.query();
             
 
@@ -16,10 +18,11 @@ g3charactermanagerApp.directive('characterAttributes', function() {
                 console.log($scope.selectedCharacter);
                 CharacterAttribute.save($scope.characterAttribute,
                     function () {
-                        $scope.characterAttributes = CharacterAttribute.query();
                         $('#saveCharacterAttributeModal').modal('hide');
                         $scope.clear();
 	                    $scope.refreshCharacter();
+	                    $scope.characterAttributes = null;
+                        $scope.characterAttributes = CharacterAttribute.query();
                     });
             };
 

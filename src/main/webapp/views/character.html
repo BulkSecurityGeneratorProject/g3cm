@@ -103,10 +103,14 @@
 			<li ng-class="{active:tab===3}" ng-click="tab = 3"> 
 				<a href >Skills</a> 
 			</li>
+			<li ng-class="{active:tab===4}" ng-click="tab = 4"> 
+				<a href >Pools</a> 
+			</li>
 			<br><br>
 			<p ng-show="tab === 1"> <character-attributes></character-attributes></p>
 			<p ng-show="tab === 2"> <character-advantages></character-advantages> </p>
 			<p ng-show="tab === 3"> <character-skills></character-skills></p>
+			<p ng-show="tab === 4"> <character-pools></character-pools></p>
 		</ul>		
 	</section>	
 <!-- 		<div characterAttributes></div> -->
